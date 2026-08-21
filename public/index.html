@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>DREAMS PLAYSTATION</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f5f0e8;
+            color: #1a1a1a;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        h1 {
+            text-align: center;
+            font-size: 3.2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: #ffd700;
+            color: #1a1a1a;
+            padding: 20px 30px;
+            border: 4px solid #1a1a1a;
+            box-shadow: 8px 8px 0 #1a1a1a;
+            display: inline-block;
+            margin: 0 auto 10px;
+            width: auto;
+        }
+
+        .header-wrap {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            background: #fff;
+            padding: 8px 24px;
+            border: 3px solid #1a1a1a;
+            display: inline-block;
+            margin-top: 6px;
+            letter-spacing: 2px;
+        }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            padding: 14px 32px;
+            border: 4px solid #1a1a1a;
+            font-size: 1.1rem;
+            font-weight: 800;
+            background: #fff;
+            color: #1a1a1a;
+            cursor: pointer;
+            transition: 0.15s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 4px 4px 0 #1a1a1a;
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        .tab-btn.active {
+            background: #1a1a1a;
+            color: #fff;
+            box-shadow: 6px 6px 0 #ffd700;
+        }
+
+        .tab-btn .badge {
+            background: #ff3b30;
+            color: #fff;
+            border-radius: 0;
+            padding: 2px 10px;
+            font-size: 0.7rem;
+            margin-left: 8px;
+            border: 2px solid #1a1a1a;
+            display: inline-block;
+            font-weight: 800;
+        }
+
+        .tab-btn.active .badge {
+            background: #ffd700;
+            color: #1a1a1a;
+        }
+
+        /* ===== PANEL ===== */
+        .library-panel {
+            display: none;
+            animation: none;
+        }
+
+        .library-panel.active {
+            display: block;
+        }
+
+        /* ===== STATS ===== */
+        .panel-stats {
+            background: #fff;
+            padding: 12px 24px;
+            margin-bottom: 20px;
+            border: 4px solid #1a1a1a;
+            box-shadow: 6px 6px 0 #1a1a1a;
+            display: inline-block;
+            font-weight: 800;
+        }
+
+        .panel-stats .number {
+            font-size: 2rem;
+            color: #ff3b30;
+        }
+
+        .panel-stats .label {
+            font-size: 1rem;
+            color: #1a1a1a;
+            margin-left: 6px;
+        }
+
+        /* ===== UPLOAD SECTION ===== */
+        .upload-section {
+            margin-bottom: 25px;
+        }
+
+        .btn-upload-toggle {
+            background: #007aff;
+            color: #fff;
+            padding: 14px 28px;
+            border: 4px solid #1a1a1a;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.15s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 6px 6px 0 #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .btn-upload-toggle:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 #1a1a1a;
+        }
+
+        .btn-upload-toggle.active {
+            background: #ff3b30;
+        }
+
+        /* ===== FORM ===== */
+        .add-game {
+            background: #fff;
+            padding: 24px 28px;
+            margin-top: 16px;
+            display: none;
+            border: 4px solid #1a1a1a;
+            box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        .add-game.show {
+            display: block;
+        }
+
+        /* ===== GAME ENTRY ===== */
+        .game-entry {
+            background: #f5f0e8;
+            padding: 16px;
+            border: 3px solid #1a1a1a;
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .game-entry .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .game-entry .entry-header .entry-number {
+            font-weight: 900;
+            font-size: 0.8rem;
+            background: #1a1a1a;
+            color: #ffd700;
+            padding: 2px 12px;
+        }
+
+        .game-entry .entry-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .game-entry .entry-fields .field {
+            flex: 1 1 140px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .game-entry .entry-fields .field label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            font-weight: 800;
+        }
+
+        .game-entry .entry-fields .field input {
+            padding: 8px 12px;
+            border: 3px solid #1a1a1a;
+            background: #fff;
+            color: #1a1a1a;
+            font-size: 0.9rem;
+            transition: 0.15s;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .game-entry .entry-fields .field input:focus {
+            outline: none;
+            background: #ffd700;
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        /* ===== PER-ENTRY DROP ZONE ===== */
+        .entry-drop-zone {
+            border: 3px dashed #1a1a1a;
+            padding: 10px;
+            text-align: center;
+            background: #faf8f5;
+            cursor: pointer;
+            transition: 0.3s;
+            min-height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        .entry-drop-zone.dragover {
+            background: #ffd700;
+            border-color: #007aff;
+        }
+
+        .entry-drop-zone .drop-text {
+            font-weight: 700;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        .entry-drop-zone .drop-text small {
+            display: block;
+            font-size: 0.6rem;
+            color: #999;
+        }
+
+        .entry-drop-zone .entry-preview-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border: 3px solid #1a1a1a;
+            margin-top: 6px;
+        }
+
+        .entry-drop-zone .file-input-hidden {
+            display: none;
+        }
+
+        .entry-remove-btn {
+            background: #ff3b30;
+            color: #fff;
+            border: 3px solid #1a1a1a;
+            padding: 4px 14px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 0.8rem;
+            align-self: flex-start;
+        }
+
+        .entry-remove-btn:hover {
+            background: #cc0000;
+        }
+
+        .btn-add-entry {
+            background: #007aff;
+            color: #fff;
+            border: 4px solid #1a1a1a;
+            padding: 10px 20px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 4px 4px 0 #1a1a1a;
+            margin-top: 6px;
+        }
+
+        .btn-add-entry:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 10px 26px;
+            border: 4px solid #1a1a1a;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.15s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: #34c759;
+            color: #1a1a1a;
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        .btn-cancel {
+            background: #e5e5e5;
+            color: #1a1a1a;
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .btn-cancel:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        .btn-danger {
+            background: #ff3b30;
+            color: #fff;
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .btn-danger:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        .btn-warning {
+            background: #ff9500;
+            color: #1a1a1a;
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .btn-warning:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        .btn-sm {
+            padding: 6px 16px;
+            font-size: 0.75rem;
+        }
+
+        /* ===== SEARCH ===== */
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 12px 18px;
+            border: 4px solid #1a1a1a;
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 16px;
+            border: 3px solid #1a1a1a;
+            background: #f5f0e8;
+            color: #1a1a1a;
+            font-size: 0.95rem;
+            outline: none;
+            font-weight: 600;
+        }
+
+        .search-bar input:focus {
+            background: #ffd700;
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .search-bar input::placeholder {
+            color: #888;
+        }
+
+        /* ===== GRID ===== */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 22px;
+            margin-top: 10px;
+        }
+
+        .game-card {
+            background: #fff;
+            border: 4px solid #1a1a1a;
+            box-shadow: 6px 6px 0 #1a1a1a;
+            transition: 0.15s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 #1a1a1a;
+        }
+
+        .game-card img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            background: #e5e5e5;
+            border-bottom: 4px solid #1a1a1a;
+        }
+
+        .game-info {
+            padding: 14px 16px 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .game-info .title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+
+        .game-info .size {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .game-info .price {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #007aff;
+            margin-top: 2px;
+        }
+
+        .game-info .price span {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #888;
+        }
+
+        .delete-game {
+            margin-top: 10px;
+            padding: 6px 0;
+            border: none;
+            background: transparent;
+            color: #ff3b30;
+            font-size: 0.8rem;
+            font-weight: 800;
+            cursor: pointer;
+            border-top: 3px solid #1a1a1a;
+            padding-top: 12px;
+            transition: 0.15s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .delete-game:hover {
+            background: #ff3b30;
+            color: #fff;
+        }
+
+        .empty-msg {
+            text-align: center;
+            color: #888;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 50px 0;
+            grid-column: 1 / -1;
+            border: 4px dashed #1a1a1a;
+            padding: 40px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #888;
+            padding: 30px 0;
+            grid-column: 1 / -1;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #fff;
+            padding: 30px 40px;
+            max-width: 420px;
+            width: 90%;
+            border: 5px solid #1a1a1a;
+            box-shadow: 12px 12px 0 #1a1a1a;
+            text-align: center;
+        }
+
+        .modal-box h2 {
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .modal-box p {
+            color: #555;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .modal-box input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 4px solid #1a1a1a;
+            background: #f5f0e8;
+            color: #1a1a1a;
+            font-size: 1.2rem;
+            text-align: center;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .modal-box input:focus {
+            outline: none;
+            background: #ffd700;
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .modal-box .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .modal-box .btn-group .btn {
+            flex: 1;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a1a;
+            padding: 14px 32px;
+            border: 4px solid #ffd700;
+            color: #fff;
+            font-weight: 800;
+            box-shadow: 8px 8px 0 #1a1a1a;
+            z-index: 9999;
+            transition: 0.3s;
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .toast.hidden {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+        }
+
+        .toast.error {
+            border-color: #ff3b30;
+        }
+
+        @media (max-width: 600px) {
+            .game-entry .entry-fields .field { flex: 1 1 100%; }
+            .tab-btn { padding: 10px 16px; font-size: 0.8rem; }
+            h1 { font-size: 1.8rem; padding: 12px 16px; }
+            .btn-upload-toggle { font-size: 0.8rem; padding: 10px 16px; }
+            .modal-box { padding: 20px; }
+            .toast { font-size: 0.8rem; padding: 10px 20px; }
+            .entry-drop-zone { min-height: 60px; padding: 8px; }
+            .entry-drop-zone .entry-preview-img { width: 40px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-wrap">
+        <h1>🎮 DREAMS PS</h1>
+        <div class="subhead">PS3 · PS4 · PS5 — Temukan koleksi game impianmu</div>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-console="ps3">
+            🟦 PS3 <span class="badge" id="badge-ps3">0</span>
+        </button>
+        <button class="tab-btn" data-console="ps4">
+            🟩 PS4 <span class="badge" id="badge-ps4">0</span>
+        </button>
+        <button class="tab-btn" data-console="ps5">
+            ⬛ PS5 <span class="badge" id="badge-ps5">0</span>
+        </button>
+    </div>
+
+    <!-- PANEL PS3 -->
+    <div id="panel-ps3" class="library-panel active">
+        <div class="panel-stats" id="stats-ps3">
+            <span class="number">0</span> <span class="label">Game di PS3</span>
+        </div>
+        <div class="upload-section">
+            <button class="btn-upload-toggle" id="toggle-ps3">📤 Upload Game PS3</button>
+            <div class="add-game" id="form-ps3">
+                <div id="entries-ps3"></div>
+                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;">
+                    <button class="btn-add-entry" id="add-entry-ps3">➕ Tambah Game</button>
+                    <button class="btn btn-primary btn-mass-upload" data-console="ps3">📦 Upload Semua (0 Game)</button>
+                    <button class="btn btn-cancel btn-cancel-upload" data-console="ps3">✖ Batal</button>
+                </div>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input class="search-input" placeholder="🔍 Cari game di PS3..." />
+            <button class="btn btn-sm btn-clear-search" data-console="ps3">✖ Clear</button>
+        </div>
+        <div class="game-grid" id="grid-ps3">
+            <div class="loading">⏳ Memuat data...</div>
+        </div>
+    </div>
+
+    <!-- PANEL PS4 -->
+    <div id="panel-ps4" class="library-panel">
+        <div class="panel-stats" id="stats-ps4">
+            <span class="number">0</span> <span class="label">Game di PS4</span>
+        </div>
+        <div class="upload-section">
+            <button class="btn-upload-toggle" id="toggle-ps4">📤 Upload Game PS4</button>
+            <div class="add-game" id="form-ps4">
+                <div id="entries-ps4"></div>
+                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;">
+                    <button class="btn-add-entry" id="add-entry-ps4">➕ Tambah Game</button>
+                    <button class="btn btn-primary btn-mass-upload" data-console="ps4">📦 Upload Semua (0 Game)</button>
+                    <button class="btn btn-cancel btn-cancel-upload" data-console="ps4">✖ Batal</button>
+                </div>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input class="search-input" placeholder="🔍 Cari game di PS4..." />
+            <button class="btn btn-sm btn-clear-search" data-console="ps4">✖ Clear</button>
+        </div>
+        <div class="game-grid" id="grid-ps4">
+            <div class="loading">⏳ Memuat data...</div>
+        </div>
+    </div>
+
+    <!-- PANEL PS5 -->
+    <div id="panel-ps5" class="library-panel">
+        <div class="panel-stats" id="stats-ps5">
+            <span class="number">0</span> <span class="label">Game di PS5</span>
+        </div>
+        <div class="upload-section">
+            <button class="btn-upload-toggle" id="toggle-ps5">📤 Upload Game PS5</button>
+            <div class="add-game" id="form-ps5">
+                <div id="entries-ps5"></div>
+                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;">
+                    <button class="btn-add-entry" id="add-entry-ps5">➕ Tambah Game</button>
+                    <button class="btn btn-primary btn-mass-upload" data-console="ps5">📦 Upload Semua (0 Game)</button>
+                    <button class="btn btn-cancel btn-cancel-upload" data-console="ps5">✖ Batal</button>
+                </div>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input class="search-input" placeholder="🔍 Cari game di PS5..." />
+            <button class="btn btn-sm btn-clear-search" data-console="ps5">✖ Clear</button>
+        </div>
+        <div class="game-grid" id="grid-ps5">
+            <div class="loading">⏳ Memuat data...</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- MODAL PIN -->
+<div class="modal-overlay" id="pinModal">
+    <div class="modal-box">
+        <h2>🔐 Verifikasi PIN</h2>
+        <p>Masukkan PIN untuk melanjutkan</p>
+        <input type="password" id="pinInput" maxlength="6" placeholder="· · · · · ·" />
+        <div class="btn-group">
+            <button class="btn btn-cancel" id="pinCancel">Batal</button>
+            <button class="btn btn-primary" id="pinConfirm">Konfirmasi</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast hidden" id="toast"></div>
+
+<script>
+    // ============ KONFIGURASI ============
+    const API_BASE = window.location.origin;
+    const MASTER_PIN = "200004";
+
+    let currentConsole = 'ps3';
+    let pendingAction = null;
+    let pendingDeleteData = null;
+    let pendingMassData = [];
+
+    // Cache data
+    let allGames = { ps3: [], ps4: [], ps5: [] };
+    let filteredGames = { ps3: [], ps4: [], ps5: [] };
+
+    // ============ TOAST ============
+    let toastTimer = null;
+    function showToast(msg, isError = false) {
+        const el = document.getElementById('toast');
+        el.textContent = msg;
+        el.className = 'toast' + (isError ? ' error' : '');
+        el.classList.remove('hidden');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.add('hidden'), 4000);
+    }
+
+    // ============ FETCH DATA ============
+    async function fetchGames(consoleKey) {
+        try {
+            const response = await fetch(`${API_BASE}/api/games/${consoleKey}`);
+            if (!response.ok) throw new Error('Gagal fetch data');
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetch:', error);
+            showToast('❌ Gagal mengambil data dari server', true);
+            return [];
+        }
+    }
+
+    async function loadAllGames() {
+        const consoles = ['ps3', 'ps4', 'ps5'];
+        for (const c of consoles) {
+            allGames[c] = await fetchGames(c);
+            filteredGames[c] = [...allGames[c]];
+        }
+        updateStats();
+        renderGrid(currentConsole);
+    }
+
+    // ============ UPDATE STATS ============
+    function updateStats() {
+        for (const c of ['ps3', 'ps4', 'ps5']) {
+            const count = allGames[c].length;
+            const statEl = document.getElementById(`stats-${c}`);
+            if (statEl) {
+                statEl.querySelector('.number').textContent = count;
+            }
+            const badge = document.getElementById(`badge-${c}`);
+            if (badge) badge.textContent = count;
+        }
+    }
+
+    // ============ RENDER GRID ============
+    function renderGrid(consoleKey) {
+        const grid = document.getElementById(`grid-${consoleKey}`);
+        if (!grid) return;
+
+        const games = filteredGames[consoleKey] || [];
+
+        if (games.length === 0) {
+            grid.innerHTML = `<div class="empty-msg">📭 Tidak ada game ditemukan</div>`;
+            return;
+        }
+
+        let html = '';
+        games.forEach((game, index) => {
+            const realIndex = allGames[consoleKey].findIndex(g => g.id === game.id);
+            const displayIndex = realIndex !== -1 ? realIndex : index;
+
+            const imageSrc = game.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"%3E%3Crect width="200" height="200" fill="%23e5e5e5"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="central" text-anchor="middle" fill="%23999" font-size="28" font-family="sans-serif"%3E🎮%3C/text%3E%3C/svg%3E';
+            html += `
+                <div class="game-card">
+                    <img src="${imageSrc}" alt="${escapeHtml(game.title)}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Crect width=%22200%22 height=%22200%22 fill=%22%23e5e5e5%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2228%22 font-family=%22sans-serif%22%3E🎮%3C/text%3E%3C/svg%3E'" />
+                    <div class="game-info">
+                        <div class="title">${escapeHtml(game.title)}</div>
+                        <div class="size">📀 ${game.size} GB</div>
+                        <div class="price">Rp ${formatRupiah(game.price)} <span>💰</span></div>
+                        <button class="delete-game" data-console="${consoleKey}" data-index="${displayIndex}">🗑 Hapus (PIN)</button>
+                    </div>
+                </div>
+            `;
+        });
+        grid.innerHTML = html;
+
+        grid.querySelectorAll('.delete-game').forEach(btn => {
+            btn.addEventListener('click', function() {
+                pendingDeleteData = {
+                    consoleKey: this.dataset.console,
+                    index: parseInt(this.dataset.index, 10)
+                };
+                showPinModal('delete');
+            });
+        });
+    }
+
+    // ============ SEARCH ============
+    function handleSearch(consoleKey) {
+        const panel = document.getElementById(`panel-${consoleKey}`);
+        const searchInput = panel.querySelector('.search-input');
+        const query = searchInput.value.toLowerCase().trim();
+
+        if (!query) {
+            filteredGames[consoleKey] = [...allGames[consoleKey]];
+        } else {
+            filteredGames[consoleKey] = allGames[consoleKey].filter(game =>
+                game.title.toLowerCase().includes(query)
+            );
+        }
+        renderGrid(consoleKey);
+    }
+
+    function clearSearch(consoleKey) {
+        const panel = document.getElementById(`panel-${consoleKey}`);
+        panel.querySelector('.search-input').value = '';
+        filteredGames[consoleKey] = [...allGames[consoleKey]];
+        renderGrid(consoleKey);
+    }
+
+    // ============ GAME ENTRIES ==========
+    function getEntries(consoleKey) {
+        const container = document.getElementById(`entries-${consoleKey}`);
+        return container.querySelectorAll('.game-entry');
+    }
+
+    function setupDropZoneForEntry(entry, consoleKey, entryId) {
+        const dropZone = entry.querySelector('.entry-drop-zone');
+        const fileInput = entry.querySelector('.file-input-hidden');
+        const preview = entry.querySelector('.entry-preview-img');
+
+        if (!dropZone) return;
+
+        // Click to open file picker
+        dropZone.addEventListener('click', (e) => {
+            e.stopPropagation();
+            fileInput.click();
+        });
+
+        // Drag & Drop
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            handleDropFiles(files, preview, dropZone, consoleKey, entryId);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = e.target.files;
+            handleDropFiles(files, preview, dropZone, consoleKey, entryId);
+            fileInput.value = '';
+        });
+    }
+
+    function handleDropFiles(files, preview, dropZone, consoleKey, entryId) {
+        let foundImage = false;
+        for (const file of files) {
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const dataUrl = e.target.result;
+                    preview.src = dataUrl;
+                    preview.style.display = 'block';
+                    dropZone.querySelector('.drop-text').style.display = 'none';
+                    
+                    // Simpan di data entry
+                    const entry = dropZone.closest('.game-entry');
+                    entry.dataset.image = dataUrl;
+                    
+                    showToast(`✅ Foto berhasil ditambahkan!`);
+                };
+                reader.readAsDataURL(file);
+                foundImage = true;
+                break; // Ambil 1 foto per entry
+            }
+        }
+        if (!foundImage) {
+            showToast('⚠️ Harap pilih file gambar!', true);
+        }
+    }
+
+    function addGameEntry(consoleKey) {
+        const container = document.getElementById(`entries-${consoleKey}`);
+        const entryId = Date.now() + Math.random() * 1000;
+        
+        const entry = document.createElement('div');
+        entry.className = 'game-entry';
+        entry.dataset.entryId = entryId;
+        
+        const totalEntries = getEntries(consoleKey).length + 1;
+        
+        entry.innerHTML = `
+            <div class="entry-header">
+                <span class="entry-number">#${totalEntries}</span>
+                <button class="entry-remove-btn" data-entry="${entryId}">✖ Hapus</button>
+            </div>
+            <div class="entry-fields">
+                <div class="field">
+                    <label>Judul Game</label>
+                    <input class="entry-title" placeholder="e.g. God of War" />
+                </div>
+                <div class="field">
+                    <label>Ukuran (GB)</label>
+                    <input class="entry-size" placeholder="12.5" />
+                </div>
+                <div class="field">
+                    <label>Harga (Rp)</label>
+                    <input class="entry-price" placeholder="150000" />
+                </div>
+            </div>
+            <div class="entry-drop-zone">
+                <div class="drop-text">
+                    📸 Drag foto dari Google ke sini
+                    <small>Klik juga untuk pilih file</small>
+                </div>
+                <img class="entry-preview-img" style="display:none;" />
+                <input type="file" class="file-input-hidden" accept="image/*" />
+            </div>
+        `;
+        
+        container.appendChild(entry);
+        
+        // Setup drop zone untuk entry ini
+        setupDropZoneForEntry(entry, consoleKey, entryId);
+        
+        // Remove entry
+        entry.querySelector('.entry-remove-btn').addEventListener('click', function() {
+            entry.remove();
+            renumberEntries(consoleKey);
+            updateUploadCount(consoleKey);
+        });
+        
+        updateUploadCount(consoleKey);
+    }
+
+    function renumberEntries(consoleKey) {
+        const entries = getEntries(consoleKey);
+        entries.forEach((entry, idx) => {
+            const numSpan = entry.querySelector('.entry-number');
+            if (numSpan) numSpan.textContent = `#${idx + 1}`;
+        });
+    }
+
+    function updateUploadCount(consoleKey) {
+        const entries = getEntries(consoleKey);
+        const count = entries.length;
+        const btn = document.querySelector(`.btn-mass-upload[data-console="${consoleKey}"]`);
+        if (btn) {
+            btn.textContent = `📦 Upload Semua (${count} Game)`;
+        }
+    }
+
+    function clearEntries(consoleKey) {
+        const container = document.getElementById(`entries-${consoleKey}`);
+        container.innerHTML = '';
+        updateUploadCount(consoleKey);
+    }
+
+    // ============ TOGGLE FORM ============
+    function toggleUploadForm(consoleKey) {
+        const form = document.getElementById(`form-${consoleKey}`);
+        const toggleBtn = document.getElementById(`toggle-${consoleKey}`);
+        const isShowing = form.classList.contains('show');
+
+        if (isShowing) {
+            form.classList.remove('show');
+            toggleBtn.textContent = `📤 Upload Game ${consoleKey.toUpperCase()}`;
+            toggleBtn.classList.remove('active');
+            clearEntries(consoleKey);
+        } else {
+            form.classList.add('show');
+            toggleBtn.textContent = `✖ Tutup Form Upload`;
+            toggleBtn.classList.add('active');
+            if (getEntries(consoleKey).length === 0) {
+                addGameEntry(consoleKey);
+            }
+        }
+    }
+
+    function cancelUpload(consoleKey) {
+        const form = document.getElementById(`form-${consoleKey}`);
+        const toggleBtn = document.getElementById(`toggle-${consoleKey}`);
+        form.classList.remove('show');
+        toggleBtn.textContent = `📤 Upload Game ${consoleKey.toUpperCase()}`;
+        toggleBtn.classList.remove('active');
+        clearEntries(consoleKey);
+    }
+
+    // ============ MASS UPLOAD ============
+    async function submitMassUpload(consoleKey) {
+        const entries = getEntries(consoleKey);
+        const games = [];
+        const errors = [];
+
+        entries.forEach((entry, idx) => {
+            const title = entry.querySelector('.entry-title').value.trim();
+            const size = entry.querySelector('.entry-size').value.trim();
+            const price = parseInt(entry.querySelector('.entry-price').value.trim(), 10);
+            const image = entry.dataset.image || null;
+            
+            if (!title) errors.push(`Game ${idx+1}: Judul kosong`);
+            else if (!size) errors.push(`Game ${idx+1}: Ukuran kosong`);
+            else if (isNaN(price) || price <= 0) errors.push(`Game ${idx+1}: Harga tidak valid`);
+            else {
+                games.push({ title, size, price, image });
+            }
+        });
+
+        if (errors.length > 0) {
+            showToast(`⚠️ Error: ${errors.join(', ')}`, true);
+            return;
+        }
+
+        if (games.length === 0) {
+            showToast('⚠️ Tidak ada game yang valid', true);
+            return;
+        }
+
+        const placeholderImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==';
+
+        pendingMassData = games.map(game => ({
+            ...game,
+            image: game.image || placeholderImage
+        }));
+
+        pendingAction = 'mass-upload';
+        showPinModal('mass-upload');
+    }
+
+    // ============ HELPER ============
+    function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function formatRupiah(angka) {
+        if (!angka) return '0';
+        return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    // ============ MODAL PIN ============
+    const modal = document.getElementById('pinModal');
+    const pinInput = document.getElementById('pinInput');
+    const pinConfirm = document.getElementById('pinConfirm');
+    const pinCancel = document.getElementById('pinCancel');
+
+    function showPinModal(actionType) {
+        pendingAction = actionType;
+        pinInput.value = '';
+        modal.classList.add('show');
+        setTimeout(() => pinInput.focus(), 100);
+    }
+
+    function closePinModal() {
+        modal.classList.remove('show');
+        pendingAction = null;
+    }
+
+    pinCancel.addEventListener('click', closePinModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closePinModal();
+    });
+
+    pinConfirm.addEventListener('click', async function() {
+        const entered = pinInput.value.trim();
+        if (entered !== MASTER_PIN) {
+            showToast('❌ PIN salah!', true);
+            pinInput.value = '';
+            pinInput.focus();
+            return;
+        }
+
+        // DELETE ACTION
+        if (pendingAction === 'delete' && pendingDeleteData) {
+            const { consoleKey, index } = pendingDeleteData;
+            try {
+                const response = await fetch(`${API_BASE}/api/games/${consoleKey}/${index}`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pin: MASTER_PIN })
+                });
+                const result = await response.json();
+                if (result.success) {
+                    showToast('🗑 Game berhasil dihapus');
+                    await loadAllGames();
+                } else {
+                    showToast('❌ ' + (result.error || 'Gagal hapus game'), true);
+                }
+            } catch (error) {
+                showToast('❌ Gagal terhubung ke server', true);
+            }
+            pendingDeleteData = null;
+            closePinModal();
+            return;
+        }
+
+        // MASS UPLOAD ACTION
+        if (pendingAction === 'mass-upload') {
+            const activePanel = document.querySelector('.library-panel.active');
+            if (!activePanel) { closePinModal(); return; }
+            const consoleKey = activePanel.id.replace('panel-', '');
+            
+            if (pendingMassData.length === 0) {
+                showToast('⚠️ Tidak ada game untuk diupload', true);
+                closePinModal();
+                return;
+            }
+
+            let successCount = 0;
+            let failCount = 0;
+
+            showToast(`📦 Mengupload ${pendingMassData.length} game...`);
+
+            for (const game of pendingMassData) {
+                try {
+                    const response = await fetch(`${API_BASE}/api/games/${consoleKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            pin: MASTER_PIN,
+                            title: game.title,
+                            size: game.size,
+                            price: game.price,
+                            image: game.image
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        successCount++;
+                    } else {
+                        failCount++;
+                        console.error('Gagal upload:', game.title, result.error);
+                    }
+                } catch (error) {
+                    failCount++;
+                    console.error('Error upload:', game.title, error);
+                }
+            }
+
+            // Reset form
+            cancelUpload(consoleKey);
+            pendingMassData = [];
+
+            await loadAllGames();
+            
+            if (failCount === 0) {
+                showToast(`✅ ${successCount} game berhasil diupload!`);
+            } else {
+                showToast(`⚠️ ${successCount} berhasil, ${failCount} gagal`, true);
+            }
+            closePinModal();
+            return;
+        }
+
+        closePinModal();
+    });
+
+    pinInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') pinConfirm.click();
+    });
+
+    // ============ EVENT LISTENERS ============
+
+    // Tab switch
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const consoleKey = this.dataset.console;
+            currentConsole = consoleKey;
+            document.querySelectorAll('.library-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById(`panel-${consoleKey}`).classList.add('active');
+            renderGrid(consoleKey);
+        });
+    });
+
+    // Toggle Upload Form
+    document.querySelectorAll('.btn-upload-toggle').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const consoleKey = this.id.replace('toggle-', '');
+            toggleUploadForm(consoleKey);
+        });
+    });
+
+    // Cancel Upload
+    document.querySelectorAll('.btn-cancel-upload').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const consoleKey = this.dataset.console;
+            cancelUpload(consoleKey);
+        });
+    });
+
+    // Add Entry
+    document.querySelectorAll('.btn-add-entry').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const consoleKey = this.id.replace('add-entry-', '');
+            addGameEntry(consoleKey);
+            renumberEntries(consoleKey);
+        });
+    });
+
+    // Mass Upload
+    document.querySelectorAll('.btn-mass-upload').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const consoleKey = this.dataset.console;
+            submitMassUpload(consoleKey);
+        });
+    });
+
+    // Search
+    document.querySelectorAll('.search-input').forEach(input => {
+        input.addEventListener('input', function() {
+            const panel = this.closest('.library-panel');
+            const consoleKey = panel.id.replace('panel-', '');
+            handleSearch(consoleKey);
+        });
+    });
+
+    // Clear Search
+    document.querySelectorAll('.btn-clear-search').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const consoleKey = this.dataset.console;
+            clearSearch(consoleKey);
+        });
+    });
+
+    // ============ INIT ============
+    loadAllGames();
+    setTimeout(() => showToast('🎮 DREAMS PLAYSTATION - Upload massal dengan foto!'), 600);
+</script>
+</body>
+</html>
